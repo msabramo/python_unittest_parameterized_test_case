@@ -56,6 +56,9 @@ class ParameterizedTestCaseMetaClass(type):
         return new_method
 
 
+class ParameterizedTestCase(unittest.TestCase):
+    __metaclass__ = ParameterizedTestCaseMetaClass
+
     @staticmethod
     def parameterize(param_names, data):
         """Decorator for parameterizing a test method - example:
@@ -79,7 +82,4 @@ class ParameterizedTestCaseMetaClass(type):
 
         return decorator
 
-
-class ParameterizedTestCase(unittest.TestCase):
-    __metaclass__ = ParameterizedTestCaseMetaClass
 
