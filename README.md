@@ -1,6 +1,8 @@
 python_unittest_parameterized_test_case
 =======================================
 
+[![Build Status](https://secure.travis-ci.org/msabramo/python_unittest_parameterized_test_case.png?branch=master)](http://travis-ci.org/msabramo/python_unittest_parameterized_test_case)
+
 Parameterized tests for Python's unittest module
 
 This was inspired by the [parameterized tests
