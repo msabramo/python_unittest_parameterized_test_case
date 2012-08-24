@@ -12,7 +12,7 @@ long_description = long_description.replace('Example usage:\n\n.. code:: python'
 
 setup(
     name='parameterizedtestcase',
-    version='0.0.1',
+    version='0.0.2',
     description="""Parameterized tests for Python's unittest module""",
     long_description=long_description,
     keywords='unittest',
