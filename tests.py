@@ -5,31 +5,25 @@ from StringIO import StringIO
 from parameterizedtestcase import ParameterizedTestCase
 
 
-def square(x):
-    return x * x
-
-
 class MyTests(ParameterizedTestCase):
     stringio = StringIO()
 
-    @ParameterizedTestCase.parameterize(("input", "expected_output"), [(1, 1), (2, 4), (3, 9), (4, 16)])
-    def test_square(self, input, expected_output):
-        # print("test_square: input = %r; expected_output = %r" % (input, expected_output))
-        self.log_message("test_square: input = %r; expected_output = %r\n" % (input, expected_output))
-        self.assertEqual(square(input), expected_output)
+    @ParameterizedTestCase.parameterize(("input", "expected_output"), [
+        ("2+4", 6),
+        ("3+5", 8),
+        ("6*9", 54),
+    ])
+    def test_eval(self, input, expected_output):
+        self.log_message("test_eval: input = %r; expected_output = %r\n" % (input, expected_output))
+        self.assertEqual(eval(input), expected_output)
 
-    def test_zzz_right_stuff_called(self):
-        """Check that test_square was called multiple times with correct parameters.
-
-        """
-
+    def test_zzz_test_eval_called_multiple_times_with_correct_params(self):
         self.assertEqual(
             self.get_log_output(),
             "\n".join([
-                "test_square: input = 1; expected_output = 1",
-                "test_square: input = 2; expected_output = 4",
-                "test_square: input = 3; expected_output = 9",
-                "test_square: input = 4; expected_output = 16"]) + "\n")
+                "test_eval: input = '2+4'; expected_output = 6",
+                "test_eval: input = '3+5'; expected_output = 8",
+                "test_eval: input = '6*9'; expected_output = 54"]) + "\n")
 
     def log_message(self, msg):
         self.stringio.write(msg)
