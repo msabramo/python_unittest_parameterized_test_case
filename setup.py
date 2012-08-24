@@ -5,7 +5,10 @@ import os
 from setuptools import setup
 
 this_dir = os.path.dirname(__file__)
-long_description = open(os.path.join(this_dir, 'README.md')).read()
+long_description = open(os.path.join(this_dir, 'README.rst')).read()
+
+# Hack stuff that is useful for GitHub but not understood by PyPI :-(
+long_description = long_description.replace('Example usage:\n\n.. code:: python', 'Example usage::')
 
 setup(
     name='parameterizedtestcase',
