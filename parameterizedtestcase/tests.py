@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import unittest
+
 try:
     from StringIO import StringIO  # Python 2
 except ImportError:
@@ -34,3 +36,6 @@ class MyTests(ParameterizedTestCase):
     def get_log_output(self):
         return self.stringio.getvalue()
 
+
+if __name__ == '__main__':
+    unittest.main()

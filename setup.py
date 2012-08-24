@@ -15,8 +15,8 @@ setup(
     author='Marc Abramowitz',
     author_email='marc@marc-abramowitz.com',
     url='https://github.com/msabramo/python_unittest_parameterized_test_case',
-    py_modules=['parameterizedtestcase'],
-    test_suite='tests',
+    packages=['parameterizedtestcase'],
+    test_suite='parameterizedtestcase.tests',
     use_2to3=True,
     license='MIT',
 )
