@@ -1,16 +1,21 @@
 #!/usr/bin/env python
 
-import unittest
+from __future__ import with_statement
+
+try:
+    import unittest2 as unittest
+except ImportError:
+    import unittest
 
 try:
     from StringIO import StringIO  # Python 2
 except ImportError:
     from io import StringIO as StringIO # Python 3
 
-from parameterizedtestcase import ParameterizedTestCase
+from parameterizedtestcase import ParameterizedTestMixin, ParameterizedTestCase
 
 
-class MyTests(ParameterizedTestCase):
+class MyParameterizedTestCase1(ParameterizedTestCase):
     stringio = StringIO()
 
     @ParameterizedTestCase.parameterize(("input", "expected_output"), [
@@ -35,6 +40,20 @@ class MyTests(ParameterizedTestCase):
 
     def get_log_output(self):
         return self.stringio.getvalue()
+
+
+class MyParameterizedTestCase2(unittest.TestCase, ParameterizedTestMixin):
+
+    @ParameterizedTestMixin.parameterize(("numerator",), [(1,), (2,), (3,)])
+    def test_assertRaises(self, numerator):
+        """Test assertRaises with a context manager
+        
+        `assertRaises` is not present in `unittest.TestCase` in Python 2.5,
+        2.6, or 3.0, but it is present in unittest2.TestCase
+        
+        """
+        with self.assertRaises(ZeroDivisionError):
+            numerator / 0
 
 
 if __name__ == '__main__':
