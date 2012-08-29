@@ -72,3 +72,9 @@ You also can check the `latest Travis CI results
 <http://travis-ci.org/msabramo/python_unittest_parameterized_test_case>`_, but
 Travis doesn't build all of the above platforms.
 
+
+Issues
+------
+
+Send your bug reports and feature requests to https://github.com/msabramo/python_unittest_parameterized_test_case/issues
+
