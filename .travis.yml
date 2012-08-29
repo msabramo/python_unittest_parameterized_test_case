@@ -7,4 +7,8 @@ python:
   - 3.2
   - pypy
 
+before_install:
+  - if [[ $TRAVIS_PYTHON_VERSION == '2.5' ]]; then pip install --use-mirrors unittest2; fi
+  - if [[ $TRAVIS_PYTHON_VERSION == '2.6' ]]; then pip install --use-mirrors unittest2; fi
+
 script: python setup.py test
