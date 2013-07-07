@@ -55,6 +55,7 @@ Supported Python versions
 - Python 2.7
 - Python 3.1
 - Python 3.2
+- Python 3.3
 - PyPy 1.9
 - Jython 2.5
 
@@ -67,6 +68,7 @@ or says `tox <http://tox.testrun.org/>`_::
       py27: commands succeeded
       py31: commands succeeded
       py32: commands succeeded
+      py33: commands succeeded
       jython: commands succeeded
       pypy: commands succeeded
       congratulations :)
