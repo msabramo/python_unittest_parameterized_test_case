@@ -23,11 +23,14 @@ Example usage
     from parameterizedtestcase import ParameterizedTestCase
 
     class MyTests(ParameterizedTestCase):
-        @ParameterizedTestCase.parameterize(("input", "expected_output"), [
-            ("2+4", 6),
-            ("3+5", 8),
-            ("6*9", 54),
-        ])
+        @ParameterizedTestCase.parameterize(
+            ("input", "expected_output"),
+            [
+                ("2+4", 6),
+                ("3+5", 8),
+                ("6*9", 54),
+            ]
+        )
         def test_eval(self, input, expected_output):
             self.assertEqual(eval(input), expected_output)
 
