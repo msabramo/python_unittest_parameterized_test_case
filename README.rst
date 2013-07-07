@@ -18,7 +18,7 @@ hackery.
 Example usage
 -------------
 
-.. code:: python
+.. code-block:: python
 
     from parameterizedtestcase import ParameterizedTestCase
 
