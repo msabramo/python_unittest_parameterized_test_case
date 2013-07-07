@@ -9,7 +9,7 @@ long_description = open(os.path.join(this_dir, 'README.rst')).read()
 
 setup(
     name='parameterizedtestcase',
-    version='0.0.2',
+    version='0.0.3',
     description="""Parameterized tests for Python's unittest module""",
     long_description=long_description,
     keywords='unittest',
