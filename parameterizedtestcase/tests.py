@@ -15,33 +15,62 @@ except ImportError:
 from parameterizedtestcase import ParameterizedTestMixin, ParameterizedTestCase
 
 
-class MyParameterizedTestCase1(ParameterizedTestCase):
-    stringio = StringIO()
+class BaseTestParameterizedTestCase(ParameterizedTestCase):
+    lst = []
 
-    @ParameterizedTestCase.parameterize(("input", "expected_output"), [
-        ("2+4", 6),
-        ("3+5", 8),
-        ("6*9", 54),
-    ])
+    def log_message(self, msg):
+        self.lst.append(msg)
+
+    def get_log_output(self):
+        return self.lst
+
+
+class MyParameterizedTestCase1(BaseTestParameterizedTestCase):
+    @ParameterizedTestCase.parameterize(
+        ("input", "expected_output"),
+        [("2+4", 6),
+         ("3+5", 8),
+         ("6*9", 54)])
     def test_eval(self, input, expected_output):
         self.log_message(
-            "test_eval: input = %r; expected_output = %r\n" % (
+            "test_eval: input = %r; expected_output = %r" % (
                 input, expected_output))
         self.assertEqual(eval(input), expected_output)
 
-    def test_zzz_test_eval_called_multiple_times_with_correct_params(self):
+    def test_eval_zzz(self):
         self.assertEqual(
-            self.get_log_output(),
-            "\n".join([
+            sorted(self.get_log_output()),
+            sorted([
                 "test_eval: input = '2+4'; expected_output = 6",
                 "test_eval: input = '3+5'; expected_output = 8",
-                "test_eval: input = '6*9'; expected_output = 54"]) + "\n")
+                "test_eval: input = '6*9'; expected_output = 54"]))
 
-    def log_message(self, msg):
-        self.stringio.write(msg)
 
-    def get_log_output(self):
-        return self.stringio.getvalue()
+class MyParameterizedTestCase2(BaseTestParameterizedTestCase):
+    @ParameterizedTestCase.parameterize(
+        ("input_dict", "expected_output"),
+        [({'num1': 2, 'num2': 4, 'sum': 6}, 6),
+         ({'num1': 3, 'num2': 5, 'sum': 8}, 8),
+         ({'num1': 4, 'num2': 6, 'sum': 10}, 10)])
+    def test_with_dict_args(self, input_dict, expected_output):
+        self.log_message(
+            "test_with_dict_args: num1 = %d; num2 = %d;"
+            " expected_output = %r" % (
+                input_dict['num1'], input_dict['num2'], expected_output))
+        self.assertEqual(
+            input_dict['num1'] + input_dict['num2'],
+            expected_output)
+
+    def test_with_dict_args_zzz(self):
+        self.assertEqual(
+            sorted(self.get_log_output()),
+            sorted([
+                "test_with_dict_args: num1 = 2; num2 = 4;"
+                " expected_output = 6",
+                "test_with_dict_args: num1 = 3; num2 = 5;"
+                " expected_output = 8",
+                "test_with_dict_args: num1 = 4; num2 = 6;"
+                " expected_output = 10"]))
 
 
 class MyParameterizedTestCase2(unittest.TestCase, ParameterizedTestMixin):
