@@ -10,7 +10,7 @@ except ImportError:
 try:
     from StringIO import StringIO  # Python 2
 except ImportError:
-    from io import StringIO as StringIO # Python 3
+    from io import StringIO as StringIO  # Python 3
 
 from parameterizedtestcase import ParameterizedTestMixin, ParameterizedTestCase
 
@@ -24,7 +24,9 @@ class MyParameterizedTestCase1(ParameterizedTestCase):
         ("6*9", 54),
     ])
     def test_eval(self, input, expected_output):
-        self.log_message("test_eval: input = %r; expected_output = %r\n" % (input, expected_output))
+        self.log_message(
+            "test_eval: input = %r; expected_output = %r\n" % (
+                input, expected_output))
         self.assertEqual(eval(input), expected_output)
 
     def test_zzz_test_eval_called_multiple_times_with_correct_params(self):
@@ -47,10 +49,10 @@ class MyParameterizedTestCase2(unittest.TestCase, ParameterizedTestMixin):
     @ParameterizedTestMixin.parameterize(("numerator",), [(1,), (2,), (3,)])
     def test_assertRaises(self, numerator):
         """Test assertRaises with a context manager
-        
+
         `assertRaises` is not present in `unittest.TestCase` in Python 2.5,
         2.6, or 3.0, but it is present in unittest2.TestCase
-        
+
         """
         with self.assertRaises(ZeroDivisionError):
             numerator / 0
