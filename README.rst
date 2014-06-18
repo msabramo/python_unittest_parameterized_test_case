@@ -1,5 +1,5 @@
-python_unittest_parameterized_test_case
-=======================================
+parameterizedtestcase
+=====================
 
 .. image:: https://secure.travis-ci.org/msabramo/python_unittest_parameterized_test_case.png?branch=master
    :target: http://travis-ci.org/msabramo/python_unittest_parameterized_test_case
